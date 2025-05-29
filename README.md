@@ -1,4 +1,4 @@
-# Triple Extractor
+# Triples Extractor
 
 Extracts (subject, predicate, object) triples from text using an LLM via `ask_groq`.
 
