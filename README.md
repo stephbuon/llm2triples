@@ -11,15 +11,28 @@ pip install git+https://github.com/stephbuon/llm2triples.git
 ## Usage
 
 ```python
-from triple_extractor.extractor import extract_triples, build_knowledge_graph, deduplicate_graph
-from triple_extractor.prompts import extract_triples_prompt
+from llm2triples.extractor import extract_triples, build_knowledge_graph, deduplicate_graph
+from llm2triples.prompts import extract_triples_prompt
 
-sentences = ["He walked home.", "The dog jumped over the log."]
+# A list of sentences to analyze
+sentences = [
+    "He walked home.",
+    "The dog jumped over the log.",
+    "Maria gave her book to Elena."
+]
+
+# Extract triples
 all_triples = []
+for sentence in sentences:
+    triples = extract_triples(sentence, extract_triples_prompt)
+    all_triples.extend(triples)
 
-for s in sentences:
-    all_triples.extend(extract_triples(s, extract_triples_prompt))
-
+# Build and deduplicate the knowledge graph
 graph = build_knowledge_graph(all_triples, use_fuzzy_matching=True)
-graph = deduplicate_graph(graph)
+cleaned_graph = deduplicate_graph(graph)
+
+# Print the result
+for subject, edges in cleaned_graph.items():
+    for obj, pred in edges:
+        print(f"({subject}) -[{pred}]-> ({obj})")
 ```
