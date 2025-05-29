@@ -1,6 +1,6 @@
 # llm2triples: Triples Extractor
 
-Extracts (subject, predicate, object) triples from text using an LLM via `ask_groq`.
+Extracts (subject, predicate, object) triples from text using an LLM.
 
 ## Installation
 
