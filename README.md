@@ -5,7 +5,7 @@ Extracts (subject, predicate, object) triples from text using an LLM via `ask_gr
 ## Installation
 
 ```bash
-pip install -e .
+pip install git+https://github.com/stephbuon/llm2triples.git
 ```
 
 ## Usage
