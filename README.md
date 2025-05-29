@@ -10,6 +10,21 @@ pip install git+https://github.com/stephbuon/llm2triples.git
 
 ## Usage
 
+Set groq API variable.
+
+```python
+os.environ["GROQ_API_KEY"] = GROQ_API_KEY
+```
+
+Knowledge graphs from triples are c
+
+`extract_triples()`: 
+
+`build_knowledge_graph()`
+
+`dedeplicate_graph()`:
+
+
 ```python
 from llm2triples.extractor import extract_triples, build_knowledge_graph, deduplicate_graph
 from llm2triples.prompts import extract_triples_prompt
