@@ -1,3 +1,4 @@
+import os
 import re
 import csv
 from collections import defaultdict
@@ -35,9 +36,11 @@ def build_knowledge_graph(triples, use_fuzzy_matching=True, log_file="fuzzy_matc
     fuzzy_writer = None
 
     if use_fuzzy_matching:
-        fuzzy_log_file = open(log_file, "w", newline="", encoding="utf-8")
+        log_exists = os.path.isfile(log_file)
+        fuzzy_log_file = open(log_file, "a", newline="", encoding="utf-8")
         fuzzy_writer = csv.DictWriter(fuzzy_log_file, fieldnames=["original", "matched", "similarity"])
-        fuzzy_writer.writeheader()
+        if not log_exists:
+            fuzzy_writer.writeheader()
 
     for subj, pred, obj in triples:
         if use_fuzzy_matching:
