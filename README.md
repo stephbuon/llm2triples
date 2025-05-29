@@ -14,7 +14,7 @@ pip install -e .
 from triple_extractor.extractor import extract_triples, build_knowledge_graph, deduplicate_graph
 from triple_extractor.prompts import extract_triples_prompt
 
-sentences = ["He <Max> walked home.", "Dog jumped over the log."]
+sentences = ["He walked home.", "The dog jumped over the log."]
 all_triples = []
 
 for s in sentences:
