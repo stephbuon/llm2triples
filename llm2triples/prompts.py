@@ -27,7 +27,8 @@ Here are some examples of what that should look like:
 Return an empty string if there are no triples.
 """
 
-# First programmatically check if there is a pronoun. 
+# First programmatically check if there is a pronoun. If we just regenerate a sentence that didn't need to be, it is a waste of money
+# and also risks introducing hallucinations. 
 resolve_pronouns_prompt = """
 Resolve pronouns in this text by putting the referent of the pronoun after it, like this: <referent>. 
 
