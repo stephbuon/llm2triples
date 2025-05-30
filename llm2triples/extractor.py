@@ -5,9 +5,9 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 from groq_client import ask_groq
 
-def extract_triples(sentence, prompt_template):
+def extract_triples(sentence, prompt_template, model="llama-3.3-70b-versatile"):
     prompt = prompt_template.format(sentence=sentence)
-    groq_output = ask_groq(prompt)
+    groq_output = ask_groq(prompt, model)
     triple_pattern = re.findall(r'\(([^)]+)\)', groq_output)
 
     triples = []
