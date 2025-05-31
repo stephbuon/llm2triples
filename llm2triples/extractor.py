@@ -28,26 +28,40 @@ def contains_pronoun(sentence):
 #            resolutions.append(sentence)
 #    return resolutions
 
-def resolve_pronouns(chunk, sentences, prompt_template, n=10, model='llama3-8b-8192'):
-    resolutions = []
-    for sentence in sentences:
-        try:
-            idx = chunk.index(sentence)  # Find the index of this sentence in the chunk
-        except ValueError:
-            resolutions.append(sentence)
-            continue
+#def resolve_pronouns(chunk, sentences, prompt_template, n=10, model='llama3-8b-8192'):
+#    resolutions = []
+#    for sentence in sentences:
+#        try:
+#            idx = chunk.index(sentence)  # Find the index of this sentence in the chunk
+#        except ValueError:
+#            resolutions.append(sentence)
+#            continue
 
-        if contains_pronoun(sentence):
-            context = chunk[max(0, idx - n):idx]
-            context_text = " ".join(context)
+#        if contains_pronoun(sentence):
+#            context = chunk[max(0, idx - n):idx]
+#            context_text = " ".join(context)
 
-            prompt = prompt_template.format(context_text=context_text, sentence=sentence)
-            response = ask_groq(prompt, model=model)
+#            prompt = prompt_template.format(context_text=context_text, sentence=sentence)
+#            response = ask_groq(prompt, model=model)
 
-            resolutions.append(response)
-        else:
-            resolutions.append(sentence)
-    return resolutions
+#            resolutions.append(response)
+#        else:
+#            resolutions.append(sentence)
+#    return resolutions
+
+def resolve_pronouns(chunk, sentence, prompt_template, n=10, model='llama3-8b-8192'):
+    idx = chunk.index(sentence)  # Find the index of this sentence in the chunk
+
+    if contains_pronoun(sentence):
+        context = chunk[max(0, idx - n):idx]
+        context_text = " ".join(context)
+
+        prompt = prompt_template.format(context_text=context_text, sentence=sentence)
+        response = ask_groq(prompt, model=model)
+
+        return response
+    else: 
+        return sentence
 
 def extract_triples(sentence, prompt_template, model="llama-3.3-70b-versatile"):
     prompt = prompt_template.format(sentence=sentence)
