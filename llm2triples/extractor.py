@@ -13,7 +13,7 @@ def contains_pronoun(sentence):
     words = re.findall(r'\b\w+\b', sentence.lower())
     return any(word in PRONOUNS for word in words)
 
-def resolve_pronouns(sentences, prompt_template, n=10):
+def resolve_pronouns(sentences, prompt_template, n=10, model='Llama3-8b-8192'):
     resolutions = []
     for i, sentence in enumerate(sentences):
         if contains_pronoun(sentence):
@@ -21,7 +21,7 @@ def resolve_pronouns(sentences, prompt_template, n=10):
             context_text = " ".join(context)
 
             prompt = prompt_template.format(context_text=context_text, sentence=sentence)
-            response = ask_groq(prompt, model='Llama3-8b-8192')
+            response = ask_groq(prompt, model)
 
             resolutions.append(response)
         else:
