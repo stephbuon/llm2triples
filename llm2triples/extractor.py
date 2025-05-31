@@ -13,11 +13,11 @@ def contains_pronoun(sentence):
     words = re.findall(r'\b\w+\b', sentence.lower())
     return any(word in PRONOUNS for word in words)
 
-def resolve_pronouns(sentences):
+def resolve_pronouns(sentences, resolve_pronouns_prompt, n=10):
     resolutions = []
     for i, sentence in enumerate(sentences):
         if contains_pronoun(sentence):
-            context = sentences[max(0, i-10):i]  # By default, get up to 10 previous sentences as context to resolve pronouns
+            context = sentences[max(0, i-n):i]  # By default, get up to 10 previous sentences as context to resolve pronouns
             context_text = " ".join(context)
 
             prompt = prompt_template.format(context_text=context_text, sentence=sentence)
