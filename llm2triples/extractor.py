@@ -13,7 +13,7 @@ def contains_pronoun(sentence):
     words = re.findall(r'\b\w+\b', sentence.lower())
     return any(word in PRONOUNS for word in words)
 
-def resolve_pronouns(sentences, prompt_template, n=10, model='Llama3-8b-8192'):
+def resolve_pronouns(sentences, prompt_template, n=10, model='llama3-8b-8192'):
     resolutions = []
     for i, sentence in enumerate(sentences):
         if contains_pronoun(sentence):
