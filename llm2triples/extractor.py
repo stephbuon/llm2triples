@@ -14,7 +14,6 @@ def contains_pronoun(sentence):
     return any(word in PRONOUNS for word in words)
 
 def resolve_pronouns(sentences, n_length=10):
-    n_length = int(n_length)
     resolutions = []
     for i, sentence in enumerate(sentences):
         if contains_pronoun(sentence):
