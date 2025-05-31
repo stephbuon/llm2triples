@@ -5,6 +5,29 @@ from collections import defaultdict
 from difflib import SequenceMatcher
 from groq_client import ask_groq
 
+import re
+from groq_client import ask_groq
+
+def contains_pronoun(sentence):
+    PRONOUNS = {"he", "she", "they", "it", "his", "her", "their", "him", "them"}
+    words = re.findall(r'\b\w+\b', sentence.lower())
+    return any(word in PRONOUNS for word in words)
+
+def resolve_pronoun_with_context(sentences):    
+    resolutions = []
+    for i, sentence in enumerate(sentences):
+        if contains_pronoun(sentence):
+            context = sentences[max(0, i-10):i]  # Get up to 10 previous sentences as context to resolve pronouns
+            context_text = " ".join(context)
+
+            prompt = prompt_template.format(context_text=context_text, sentence=sentence)
+            response = ask_groq(prompt, model='Llama3-8b-8192')
+
+            resolutions.append(response)
+        else:
+            resolutions.append(sentence)
+    return resolutions
+
 def extract_triples(sentence, prompt_template, model="llama-3.3-70b-versatile"):
     prompt = prompt_template.format(sentence=sentence)
     groq_output = ask_groq(prompt, model)
