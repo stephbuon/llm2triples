@@ -13,15 +13,36 @@ def contains_pronoun(sentence):
     words = re.findall(r'\b\w+\b', sentence.lower())
     return any(word in PRONOUNS for word in words)
 
-def resolve_pronouns(sentences, prompt_template, n=10, model='llama3-8b-8192'):
+#def resolve_pronouns(chunk, sentences, prompt_template, n=10, model='llama3-8b-8192'):
+#    resolutions = []
+#    for i, sentence in enumerate(sentences):
+#        if contains_pronoun(sentence):
+#            context = sentences[max(0, i-n):i]  # By default, get up to 10 previous sentences as context to resolve pronouns
+#            context_text = " ".join(context)
+#
+#            prompt = prompt_template.format(context_text=context_text, sentence=sentence)
+#            response = ask_groq(prompt, model)
+#
+#            resolutions.append(response)
+#        else:
+#            resolutions.append(sentence)
+#    return resolutions
+
+def resolve_pronouns(chunk, sentences, prompt_template, n=10, model='llama3-8b-8192'):
     resolutions = []
-    for i, sentence in enumerate(sentences):
+    for sentence in sentences:
+        try:
+            idx = chunk.index(sentence)  # Find the index of this sentence in the chunk
+        except ValueError:
+            resolutions.append(sentence)
+            continue
+
         if contains_pronoun(sentence):
-            context = sentences[max(0, i-n):i]  # By default, get up to 10 previous sentences as context to resolve pronouns
+            context = chunk[max(0, idx - n):idx]
             context_text = " ".join(context)
 
             prompt = prompt_template.format(context_text=context_text, sentence=sentence)
-            response = ask_groq(prompt, model)
+            response = ask_groq(prompt, model=model)
 
             resolutions.append(response)
         else:
