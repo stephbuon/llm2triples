@@ -28,10 +28,18 @@ Return an empty string if there are no triples.
 # First programmatically check if there is a pronoun. If we just regenerate a sentence that didn't need to be, it is a waste of money
 # and also risks introducing hallucinations. 
 resolve_pronouns_prompt = """
-Resolve pronouns in this text by putting the referent of the pronoun after it, like this: <referent>. 
+Given the following context:
+\"\"\"{context_text}\"\"\"
+
+Resolve the pronouns in the following sentence by appending the referent in angle brackets after each pronoun, like this <referent>.
+
+This is the sentence:
+\"\"\"{sentence}\"\"\"
+
+These are examples: 
 
 Max rode his <Max's> bike home on Sunday. 
 After Maria gave the book to Anna, she <Maria> told her <Anna> that she <Anna> needed to return it by Friday because the librarian said it was overdue.
 
-Return just the sentence and no other text. 
+Return just the edited sentence and no other text.
 """
