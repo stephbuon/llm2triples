@@ -9,7 +9,28 @@ import re
 from groq_client import ask_groq
 
 def contains_pronoun(sentence):
-    PRONOUNS = {"he", "she", "they", "it", "his", "her", "their", "him", "them"}
+    #PRONOUNS = {"he", "she", "they", "it", "his", "her", "their", "him", "them"}
+    
+    PRONOUNS = {
+    # Subject pronouns
+    "i", "you", "he", "she", "it", "we", "they",
+
+    # Object pronouns
+    "me", "you", "him", "her", "it", "us", "them",
+
+    # Possessive adjectives (used before nouns)
+    "my", "your", "his", "her", "its", "our", "their",
+
+    # Possessive pronouns (stand alone)
+    "mine", "yours", "his", "hers", "ours", "theirs",
+
+    # Reflexive pronouns
+    "myself", "yourself", "himself", "herself", "itself", "ourselves", "yourselves", "themselves",
+
+    # Indefinite pronouns (optional for generalization)
+    "someone", "somebody", "anyone", "anybody", "everyone", "everybody", "no one", "nobody", 
+    "each", "either", "neither", "one", "none", "all", "some", "many", "few", "several", "any", "most"}
+    
     words = re.findall(r'\b\w+\b', sentence.lower())
     return any(word in PRONOUNS for word in words)
 
