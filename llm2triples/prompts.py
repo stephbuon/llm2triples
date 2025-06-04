@@ -25,17 +25,17 @@ Return an empty string if there are no triples.
 #Return an empty string if there are no triples.
 #"""
 
-extract_triples_prompt = """
-Return the directly stated and indirectly stated subject verb predicate and object verb object triples 
-from this sentence. Include adjectives. This is the sentence: {sentence}?
+#extract_triples_prompt = """
+#Return the directly stated and indirectly stated subject verb predicate and object verb object triples 
+#from this sentence. Include adjectives. This is the sentence: {sentence}?
 
-Return the triples like this: (text, text, text).
+#Return the triples like this: (text, text, text).
 
-(Max, walked, home)
-(Dog, jumped over, log)
+#(Max, walked, home)
+#(Dog, jumped over, log)
 
-Return an empty string if there are no triples.
-"""
+#Return an empty string if there are no triples.
+#"""
 
 
 extract_triples_prompt = """
