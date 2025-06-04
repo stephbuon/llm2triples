@@ -53,7 +53,7 @@ Return an empty string if there are no triples.
 
 extract_triples_prompt = """
 Return only the grammatical subject verb predicate and object verb object triples from the following sentence. 
-Include modifying adjectives if there are any. 
+If there are adjectives that modify the subject verb predicate or object verb object, include them.  
 Include prepositions when they are required to understand the triple. 
 Do not extract multiple versions of the same triple. 
 
