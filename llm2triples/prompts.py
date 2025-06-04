@@ -38,6 +38,18 @@ Return an empty string if there are no triples.
 """
 
 
+extract_triples_prompt = """
+Return only the subject verb predicate and object verb object triples from the following sentence with their modifying adjectives. 
+Include prepositions when they are required to understand the triple. This is the sentence: {sentence}?
+
+Return the triples like this: (text, text, text).
+
+(Max, walked, home)
+(Dog, jumped over, large log)
+
+Return an empty string if there are no triples.
+"""
+
 
 # First programmatically check if there is a pronoun. If we just regenerate a sentence that didn't need to be, it is a waste of money
 # and also risks introducing hallucinations. 
