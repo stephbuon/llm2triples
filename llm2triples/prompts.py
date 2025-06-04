@@ -39,7 +39,7 @@ Return an empty string if there are no triples.
 
 
 extract_triples_prompt = """
-Return only the subject verb predicate and object verb object triples from the following sentence with their modifying adjectives. 
+Return only the subject verb predicate and object verb object triples from the following sentence. Include modifying adjectives if there are any. 
 Include prepositions when they are required to understand the triple. This is the sentence: {sentence}?
 
 Return the triples like this: (text, text, text).
