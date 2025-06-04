@@ -26,8 +26,12 @@ Return an empty string if there are no triples.
 #"""
 
 extract_triples_prompt = """
-What are the triples in this sentence: {sentence}?
+Return only the directly stated and indirectly stated subject verb predicate triples 
+from this sentence: {sentence}?
 Return the triples like this: (text, text, text).
+
+(Max, walked, home)
+(Dog, jumped over, log)
 
 Return an empty string if there are no triples.
 """
