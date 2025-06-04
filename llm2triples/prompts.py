@@ -26,7 +26,7 @@ Return an empty string if there are no triples.
 #"""
 
 extract_triples_prompt = """
-Return only the directly stated and indirectly stated subject verb predicate triples 
+Return only the directly stated and indirectly stated subject verb predicate and object verb object triples 
 from this sentence: {sentence}?
 Return the triples like this: (text, text, text).
 
