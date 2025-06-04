@@ -23,7 +23,7 @@ Return an empty string if there are no triples.
 #(Dog, jumped over, log)
 
 #Return an empty string if there are no triples.
-"""
+#"""
 
 extract_triples_prompt = """
 What are the triples in this sentence: {sentence}?
