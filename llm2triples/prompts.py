@@ -26,8 +26,9 @@ Return an empty string if there are no triples.
 #"""
 
 extract_triples_prompt = """
-Return only the directly stated and indirectly stated subject verb predicate and object verb object triples 
-from this sentence: {sentence}?
+Return the directly stated and indirectly stated subject verb predicate and object verb object triples 
+from this sentence. Include adjectives. This is the sentence: {sentence}?
+
 Return the triples like this: (text, text, text).
 
 (Max, walked, home)
@@ -35,6 +36,7 @@ Return the triples like this: (text, text, text).
 
 Return an empty string if there are no triples.
 """
+
 
 
 # First programmatically check if there is a pronoun. If we just regenerate a sentence that didn't need to be, it is a waste of money
