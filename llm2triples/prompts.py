@@ -13,17 +13,25 @@ Here are some examples of what that should look like:
 Return an empty string if there are no triples.
 """
 
-extract_triples_prompt = """
-Return only the grammatical subject, verb, object and the object predicate 
-triples stated in this sentence: {sentence}.
-Return the triples like this: (text, text, text).
+#extract_triples_prompt = """
+#Return only the grammatical subject, verb, object and the object predicate 
+#triples stated in this sentence: {sentence}.
+#Return the triples like this: (text, text, text).
 
-Here are some examples of what that should look like: 
-(Max, walked, home)
-(Dog, jumped over, log)
+#Here are some examples of what that should look like: 
+#(Max, walked, home)
+#(Dog, jumped over, log)
+
+#Return an empty string if there are no triples.
+"""
+
+extract_triples_prompt = """
+What are the triples in this sentence: {sentence}?
+Return the triples like this: (text, text, text).
 
 Return an empty string if there are no triples.
 """
+
 
 # First programmatically check if there is a pronoun. If we just regenerate a sentence that didn't need to be, it is a waste of money
 # and also risks introducing hallucinations. 
